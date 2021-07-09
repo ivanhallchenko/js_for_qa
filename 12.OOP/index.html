@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src=Practice_OOP.js></script>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<h1 id="heading"; style="text-align: center; font-size: 60px">Ready?</h1>
+<img src="https://art.pixilart.com/0f206537b6.png" style="
+    position: absolute;
+    height: 600px;
+    width: 700px;
+    left: 963px;
+    top: 200px;
+">
+<script>
+    let Car = function (x, y, url) {
+        this.x = x;
+        this.y = y;
+        //this.url = url;
+        //this.speed = 5;
+        this.draw(url);
+    };
+
+    Car.prototype.draw = function (url) {
+        let carHtml = `<img src="${url}" />`;
+        this.carElement = $(carHtml);
+
+        this.carElement.css({
+            position: "absolute",
+            left: this.x,
+            top: this.y,
+            height: 200,
+            width: 400,
+        });
+        $("body").append(this.carElement);
+    };
+
+    let ford = new Car(0, 200, "https://auto-iz-usa.com/images/car2.png");
+    let porshe = new Car(0, 400, "https://massive.ua/image/cat_text_img/zapchasti_PORSCHE_2.png");
+    let nissan = new Car(0, 600, "https://www-europe.nissan-cdn.net/content/dam/Nissan/ua/ru/Misc/Navara_my19_packshot2_UA.PNG.ximg.l_4_h.smart.png");
+
+    Car.prototype.moveRight = function (speed) {
+        //this.x -= this.speed;
+        this.x += speed;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveLeft = function (speed) {
+        //this.x -= this.speed;
+        this.x -= speed;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveUP = function (speed) {
+        //this.y += this.speed;
+        this.y -= speed;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    Car.prototype.moveDown = function (speed) {
+        //this.y -= this.speed;
+        this.y -= speed;
+        this.carElement.css({
+            left: this.x,
+            top: this.y
+        });
+    };
+
+    let counter = 6;
+    let changeH1 = () =>{
+        $("h1").text(counter = counter - 1);
+        if (counter === 0){
+            startRacing();
+            clearInterval(intervalId);
+        }
+    }
+
+    let intervalId = setInterval(changeH1, 1000);
+
+    let startRacing = () => {
+
+        $("h1").text("GOOOO!")
+        let finish = setInterval(() => {
+            ford.moveRight(Math.floor(Math.random() * 5));
+            nissan.moveRight(Math.floor(Math.random() * 5));
+            porshe.moveRight(Math.floor(Math.random() * 5));
+            if (ford.x >= 1304) {
+                $("h1").text("Ford WIN!");
+                console.log(ford.x);
+                clearInterval(finish);
+            }else if(nissan.x >= 1304){
+                $("h1").text("Nissan WIN!");
+                clearInterval(finish);
+            }else if(porshe.x >= 1304){
+                $("h1").text("Nissan WIN!");
+                clearInterval(finish);
+            }
+        }, 15);
+    }
+    // ford.draw();
+    // nissan.draw();
+    // ford.moveRight();
+    // nissan.moveLeft();
+    // ford.moveDown();
+    // nissan.moveUP();
+</script>
+</body>
+</html>

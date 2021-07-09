@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="heading">Hello!</h1>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script>
+    let leftOffset = 0;
+    let moveHeading = () => {
+        $("#heading").offset({left: leftOffset);
+        leftOffset++;
+        if (leftOffset > 100){
+            leftOffset = 0;
+        }
+    }
+    setInterval(moveHeading, 30);
+</script>
+</body>
+</html>

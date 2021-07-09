@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="heading">Hello!</h1>
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script>
+    // task 1
+    // $("html").click(function (event) {
+    //     $("#heading").offset({left: event.pageX, top: event.pageY});
+    // });
+
+    // task 2
+    // let leftOffset = 0;
+    // let topOffset = 0;
+    // let moveHeading = () => {
+    //     $("#heading").offset({left: leftOffset, top: topOffset});
+    //     if (leftOffset < 200 && topOffset == 0){
+    //         leftOffset++;
+    //     } else if (leftOffset == 200 && topOffset < 200){
+    //         topOffset++;
+    //     } else if (leftOffset < 201 && leftOffset > 0 && topOffset == 200){
+    //         leftOffset--;
+    //     } else topOffset--;
+    // }
+    // setInterval(moveHeading, 15);
+
+    // task 3
+    // let leftOffset = 0;
+    // let topOffset = 0;
+    // let moveHeading = () => {
+    //     $("#heading").offset({left: leftOffset, top: topOffset});
+    //     if (leftOffset < 200 && topOffset == 0){
+    //         leftOffset++;
+    //     } else if (leftOffset == 200 && topOffset < 200){
+    //         topOffset++;
+    //     } else if (leftOffset < 201 && leftOffset > 0 && topOffset == 200){
+    //         leftOffset--;
+    //     } else topOffset--;
+    // }
+    // let stopAnimation = () => {
+    //     clearInterval(intervalId);
+    // }
+    // $("h1").click(stopAnimation);
+    // let intervalId = setInterval(moveHeading, 30);
+
+    // task 4
+
+    let leftOffset = 0;
+    let topOffset = 0;
+    let speed = 100;
+    let speedStep = 10;
+    let counter = speed / speedStep;
+    let congratsText = "You are won!";
+
+    let moveHeading = () => {
+        $("#heading").offset({left: leftOffset, top: topOffset});
+        if (leftOffset < 200 && topOffset === 0) {
+            leftOffset++;
+        } else if (leftOffset === 200 && topOffset < 200) {
+            topOffset++;
+        } else if (leftOffset < 201 && leftOffset > 0 && topOffset === 200) {
+            leftOffset--;
+        } else topOffset--;
+    }
+
+    let intervalId = setInterval(moveHeading, speed);
+
+    let quickerAnimation = () => {
+        clearInterval(intervalId);
+        console.log(speed , "local");
+        intervalId = setInterval(moveHeading, speed = speed - speedStep);
+        counter = counter - 1;
+        let stepText = "Try to tap! " + counter;
+        $("h1").text(stepText);
+        if (counter <= 0) {
+            $("h1").text(congratsText);
+            clearInterval(intervalId);
+        }
+    }
+    $("h1").click(quickerAnimation);
+    console.log(speed , "global");
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // var 1
+    // let timeUp = function (){
+    //     alert("Time is out!");
+    // }
+    // setTimeout(timeUp, 3000);
+    // var 2
+    //setTimeout(() => alert("Time is out!"), 3000);
+    // clearTimeOut
+    // let doHomeWorkAlarm = function () {
+    //     alert("Hey! Let do homework!");
+    // }
+    // let timeoutId = setTimeout(doHomeWorkAlarm, 5000);
+    // clearTimeout(timeoutId);
+    let counter = 5;
+    let printMessage = function () {
+        console.log("You are looking in console " + counter + " sec");
+        counter+=5;
+    }
+    let intervalId = setInterval(printMessage, 5000);
+    //clearInterval(intervalId);
+
+
+</script>
+</body>
+</html>
